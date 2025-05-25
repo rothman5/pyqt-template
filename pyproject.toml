@@ -1,0 +1,16 @@
+[project]
+name = "pyqt-template"
+description = "A template PyQt6 application using a MVC design pattern."
+version = "0.1.0"
+requires-python = ">=3.12.9"
+authors = [
+    { name = "rothman5", email = "rothman@ualberta.ca" }
+]
+dependencies = [
+    "pytest>=8.3.5",
+    "ruff>=0.11.11",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
