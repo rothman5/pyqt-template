@@ -61,7 +61,7 @@ class LogLevelFilter(logging.Filter):
 
     def filter(self, record: logging.LogRecord) -> bool:
         """
-        Modify the log record to use shorter level names.
+        Filter to modify log level names in the log record.
 
         Args:
             record (logging.LogRecord): The log record to filter.
@@ -179,14 +179,30 @@ class Log(metaclass=Singleton):
 
 
 if __name__ == "__main__":
-    log = Log()
-    log.debug("This is a debug message")
-    log.info("This is an info message")
-    log.warning("This is a warning message")
-    log.error("This is an error message")
-    log.critical("This is a critical message")
+    log1 = Log()
+    log2 = Log()
+
+    assert id(log1) == id(log2), "Log instances are not the same!"
+
+    log1.debug("This is a debug message")
+    log1.info("This is an info message")
+    log1.warning("This is a warning message")
+    log1.error("This is an error message")
+    log1.critical("This is a critical message")
     try:
         raise ValueError("Test exception for logging")
     except ValueError:
-        log.exception("Caught an exception")
-    log.close()
+        log1.exception("Caught an exception")
+
+    log2.debug("This is a debug message")
+    log2.info("This is an info message")
+    log2.warning("This is a warning message")
+    log2.error("This is an error message")
+    log2.critical("This is a critical message")
+    try:
+        raise ValueError("Test exception for logging")
+    except ValueError:
+        log2.exception("Caught an exception")
+
+    log1.close()
+    log2.close()
