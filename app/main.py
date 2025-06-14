@@ -1,16 +1,33 @@
 import sys
 
+from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtWidgets import QApplication
 
-from app.utilities import QML_PATH
+from app.tools.logger import Log
+from app.tools.paths import QML_PATH
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
+
+def main() -> None:
+    if not QML_PATH.exists():
+        raise FileNotFoundError(f"Failed to locate the QML file: {QML_PATH}")
+
+    log = Log()
+    app = QGuiApplication(sys.argv)
     eng = QQmlApplicationEngine()
 
-    eng.load(QML_PATH / "App.qml")
+    eng.load(QML_PATH)
     if not eng.rootObjects():
-        sys.exit(-1)
+        raise RuntimeError("Failed to load the QML file.")
 
-    sys.exit(app.exec())
+    try:
+        sys.exit(app.exec())
+    except KeyboardInterrupt:
+        log.info("Closing... Bye!")
+        sys.exit(0)
+    except Exception:
+        log.exception("An unexpected error occurred")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

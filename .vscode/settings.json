@@ -1,0 +1,12 @@
+{
+    "qtForPython.qmlls.enabled": true,
+    "qtForPython.designer.path": "${workspaceFolder}/.venv/Scripts/pyside6-designer.exe",
+    "qtForPython.linguist.path": "${workspaceFolder}/.venv/Scripts/pyside6-linguist.exe",
+    "qtForPython.lrelease.path": "${workspaceFolder}/.venv/Scripts/pyside6-lrelease.exe",
+    "qtForPython.lupdate.path": "${workspaceFolder}/.venv/Scripts/pyside6-lupdate.exe",
+    "qtForPython.qml.path": "${workspaceFolder}/.venv/Scripts/pyside6-qml.exe",
+    "qtForPython.qmlformat.path": "${workspaceFolder}/.venv/Scripts/pyside6-qmlformat.exe",
+    "qtForPython.qmlls.path": "${workspaceFolder}/.venv/Scripts/pyside6-qmlls.exe",
+    "qtForPython.rcc.path": "${workspaceFolder}/.venv/Scripts/pyside6-rcc.exe",
+    "qtForPython.uic.path": "${workspaceFolder}/.venv/Scripts/pyside6-uic.exe",
+}

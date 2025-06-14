@@ -1,17 +1,15 @@
 import QtQuick
-import "../themes"
+import "../theme"
 
+BaseButton {
+    id: filledButton
 
-AbstractButton {
-    id: filled_button
-    label: qsTr("Filled Button")
-    scale_animation: true
-    text_color: Themes.current.text_secondary
-    surface_color: Themes.current.primary
-    disabled_color: Themes.current.primary
-    border_color: Themes.current.primary
-    hover_color: Themes.current.secondary
-    hover_border_color: Themes.current.secondary
-    pressed_color: Themes.current.secondary
-    pressed_border_color: Themes.current.secondary
+    property color fillColor: Theme.colors.primary
+    property color textColor: Theme.colors.primaryText
+
+    borderWidth: 0
+    surfaceColor: filledButton.fillColor
+    surfaceTextColor: filledButton.textColor
+    hoveredColor: Qt.darker(filledButton.fillColor, 1.2)
+    pressedColor: Qt.darker(filledButton.fillColor, 1.4)
 }

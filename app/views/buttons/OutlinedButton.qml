@@ -1,10 +1,11 @@
 import QtQuick
-import "../themes"
+import "../theme"
 
+BaseButton {
+    id: outlinedButton
 
-AbstractButton {
-    id: outlined_button
-    label: qsTr("Outlined Button")
-    hover_border_color: Themes.current.primary
-    pressed_border_color: Themes.current.secondary
+    property color outlineColor: Theme.colors.primary
+
+    hoveredBorderColor: outlinedButton.outlineColor
+    pressedBorderColor: Qt.darker(outlinedButton.outlineColor, 1.2)
 }

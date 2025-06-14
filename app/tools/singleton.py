@@ -5,11 +5,6 @@ SingletonType = TypeVar("SingletonType", bound="Singleton")
 
 
 class Singleton(type):
-    """
-    A metaclass that implements the Singleton design pattern.
-    Ensures that only one instance of a class using this metaclass exists.
-    """
-
     _lock: ClassVar[threading.Lock] = threading.Lock()
     _instances: ClassVar[dict[type[Any], Any]] = {}
 
@@ -31,7 +26,7 @@ class Singleton(type):
             T: The singleton instance of the class.
         Raises:
             TypeError: If the class does not support instantiation with the provided arguments.
-        
+
         Usage:
             class MySingleton(metaclass=Singleton):
                 pass

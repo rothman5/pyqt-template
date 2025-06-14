@@ -1,66 +1,77 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Layouts
+import "theme"
 import "buttons"
-import "themes"
-
 
 ApplicationWindow {
-    id: main_window
-    visible: true
-    width: 480
-    height: 640
-    title: qsTr("Style Tests")
-    color: Themes.current.bg
+    id: mainWindow
 
-    ColumnLayout {
-        id: column_layout
-        visible: true
+    title: "QML Template"
+    visible: true
+    minimumWidth: 480
+    minimumHeight: 640
+    width: mainWindow.minimumWidth
+    height: mainWindow.minimumHeight
+    color: Theme.colors.background
+
+    RowLayout {
+        id: buttonRowLayout
+
         anchors.centerIn: parent
 
-        NormalButton {
-            id: button1
-            label: "test1"
+        BaseButton {
+            id: baseButtonText
+            text: "Button"
+
+            onClicked: {
+                baseButtonText.loading = !baseButtonText.loading;
+            }
         }
 
-        OutlinedButton {
-            id: button2
-            label: "test2"
-        }
+        // BaseButton {
+        //     id: baseButtonIcon
+        //     iconSource: "../assets/refresh.svg"
+        // }
 
-        FilledButton {
-            id: button3
-            label: "test3"
-        }
+        // BaseButton {
+        //     id: baseButton
+        //     text: "Button"
+        //     iconSource: "../assets/refresh.svg"
+        // }
 
-        ErrorOutlinedButton {
-            id: button4
-            label: "test4"
-        }
+        // FilledButton {
+        //     id: filledButtonText
+        //     text: "Button"
+        //     fillColor: Theme.colors.error
+        //     textColor: Theme.colors.errorText
+        // }
 
-        ErrorFilledButton {
-            id: button5
-            label: "test5"
-        }
+        // FilledButton {
+        //     id: filledButtonIcon
+        //     iconSource: "../assets/refresh.svg"
+        // }
 
-        WarningOutlinedButton {
-            id: button6
-            label: "test6"
-        }
+        // FilledButton {
+        //     id: filledButton
+        //     text: "Button"
+        //     iconSource: "../assets/refresh.svg"
+        // }
 
-        WarningFilledButton {
-            id: button7
-            label: "test7"
-        }
+        // OutlinedButton {
+        //     id: outlinedButtonText
+        //     text: "Button"
+        // }
 
-        SuccessOutlinedButton {
-            id: button8
-            label: "test8"
-        }
+        // OutlinedButton {
+        //     id: outlinedButtonIcon
+        //     iconSource: "../assets/refresh.svg"
+        // }
 
-        SuccessFilledButton {
-            id: button9
-            label: "test9"
-        }
+        // OutlinedButton {
+        //     id: outlinedButton
+        //     text: "Button"
+        //     iconSource: "../assets/refresh.svg"
+        // }
     }
 }

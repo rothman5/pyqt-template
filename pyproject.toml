@@ -1,20 +1,18 @@
 [project]
 name = "pyqt-template"
-description = "A template PyQt6 application using a MVC design pattern."
 version = "0.1.0"
+description = "A template for Qt applications with QML and Python using a MVC design pattern."
 requires-python = ">=3.12.9"
-authors = [
-    { name = "rothman5", email = "rothman@ualberta.ca" }
-]
 dependencies = [
     "pyclean>=3.1.0",
     "pyside6>=6.9.0",
-    "ruff>=0.11.11",
+    "ruff>=0.11.12",
+    "tomlkit>=0.13.2",
 ]
 
 [tool.ruff]
 indent-width = 4
-line-length = 100
+line-length = 80
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
