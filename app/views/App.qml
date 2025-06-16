@@ -1,12 +1,9 @@
 import QtQuick
-import QtQuick.Controls.Material
+import QtQuick.Controls.Basic
 import QtQuick.Layouts
-import "theme"
-import "buttons"
 
 ApplicationWindow {
     id: mainWindow
-
     title: "QML Template"
     visible: true
     minimumWidth: 480
@@ -15,63 +12,37 @@ ApplicationWindow {
     height: mainWindow.minimumHeight
     color: Theme.colors.background
 
-    RowLayout {
-        id: buttonRowLayout
-
-        anchors.centerIn: parent
+    ColumnLayout {
+        id: columnLayout
+        spacing: 4
+        anchors.margins: 8
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        height: Math.min(implicitHeight, parent.height / 2)
 
         BaseButton {
-            id: baseButtonText
-            text: "Button"
-
+            id: addDeviceButton
+            icon.source: "assets/plus.svg"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 28
+            BaseToolTip {
+                id: addDeviceButtonToolTip
+                parent: addDeviceButton
+                text: "Add a new device"
+                visible: addDeviceButton.hovered && !addDeviceButton.pressed
+            }
             onClicked: {
-                baseButtonText.loading = !baseButtonText.loading;
+                var device_num = deviceModel.rowCount() + 1;
+                var result = deviceModel.add_device("Device #" + device_num, "COM" + device_num, 115200);
             }
         }
 
-        // BaseButton {
-        //     id: baseButtonIcon
-        //     iconSource: "../assets/refresh.svg"
-        // }
+        DeviceList {
+            id: deviceList
 
-        // BaseButton {
-        //     id: baseButton
-        //     text: "Button"
-        //     iconSource: "../assets/refresh.svg"
-        // }
-
-        // FilledButton {
-        //     id: filledButtonText
-        //     text: "Button"
-        //     fillColor: Theme.colors.error
-        //     textColor: Theme.colors.errorText
-        // }
-
-        // FilledButton {
-        //     id: filledButtonIcon
-        //     iconSource: "../assets/refresh.svg"
-        // }
-
-        // FilledButton {
-        //     id: filledButton
-        //     text: "Button"
-        //     iconSource: "../assets/refresh.svg"
-        // }
-
-        // OutlinedButton {
-        //     id: outlinedButtonText
-        //     text: "Button"
-        // }
-
-        // OutlinedButton {
-        //     id: outlinedButtonIcon
-        //     iconSource: "../assets/refresh.svg"
-        // }
-
-        // OutlinedButton {
-        //     id: outlinedButton
-        //     text: "Button"
-        //     iconSource: "../assets/refresh.svg"
-        // }
+            devModel: deviceModel
+            desiredHeight: parent.parent.height / 2 - addDeviceButton.height - columnLayout.spacing - anchors.margins * 2
+        }
     }
 }

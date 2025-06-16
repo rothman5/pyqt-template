@@ -43,7 +43,7 @@ QtObject {
         linkVisited: theme.darkMode ? "#81A1C1" : "#81A1C1"
 
         disabled: theme.darkMode ? Qt.darker("#302f2f", 1.5) : Qt.darker("#302f2f", 1.5)
-        disabledText: theme.darkMode ? "#434C5E" : "#434C5E"
+        disabledText: theme.darkMode ? Qt.darker("#D8DEE9", 1.5) : Qt.darker("#D8DEE9", 1.5)
 
         surface: theme.darkMode ? "#302f2f" : "#302f2f"
         surfaceText: theme.darkMode ? "#D8DEE9" : "#D8DEE9"

@@ -3,6 +3,7 @@ import sys
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
+from app.models.device_model import DeviceModel, PortModel
 from app.tools.logger import Log
 from app.tools.paths import QML_PATH
 
@@ -14,6 +15,14 @@ def main() -> None:
     log = Log()
     app = QGuiApplication(sys.argv)
     eng = QQmlApplicationEngine()
+    dm = DeviceModel()
+    pm = PortModel()
+
+    dm.add_device("Device #1", "COM1", 115200)
+    dm.add_device("Device #2", "COM2", 460800)
+
+    eng.rootContext().setContextProperty("deviceModel", dm)
+    eng.rootContext().setContextProperty("portModel", pm)
 
     eng.load(QML_PATH)
     if not eng.rootObjects():
