@@ -3,19 +3,16 @@ import QtQuick.Controls.Basic
 
 ToolTip {
     id: tooltip
-
     delay: Theme.animationDuration * 5
     opacity: 0
 
     background: Rectangle {
         id: tooltipBackground
-
         radius: Theme.cornerRadius / 2
         color: Qt.lighter(Theme.colors.surface, 2)
 
         Canvas {
             id: triangle
-
             width: 12
             height: 6
             anchors.horizontalCenter: parent.horizontalCenter
@@ -38,9 +35,9 @@ ToolTip {
 
     contentItem: Text {
         id: tooltipText
-
         text: tooltip.text
         font.pixelSize: Theme.fontSizeCaption
+        font.weight: Font.Medium
         color: Theme.colors.surfaceText
         padding: 0
         horizontalAlignment: Text.AlignLeft
@@ -71,9 +68,8 @@ ToolTip {
 
     Timer {
         id: autoHideTimer
-
-        interval: Theme.animationDuration * 20
         repeat: false
+        interval: Theme.animationDuration * 20
 
         onTriggered: {
             tooltip.opacity = 0;

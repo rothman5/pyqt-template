@@ -4,39 +4,36 @@ import QtQuick.Layouts
 
 Item {
     id: deviceList
-
-    property var devModel: null
-    property int desiredHeight: 240
-    property int minHeight: Math.min(deviceListView.contentHeight, desiredHeight)
-    property int maxHeight: desiredHeight
-
     Layout.fillWidth: true
     Layout.fillHeight: true
     Layout.minimumHeight: deviceList.minHeight
     Layout.maximumHeight: deviceList.maxHeight
 
+    property var devModel: null
+    property int desiredHeight: 240
+    property int minHeight: Math.min(deviceListView.contentHeight, desiredHeight)
+    property int maxHeight: desiredHeight
+    property int nitems: deviceListView.count
+
     ListView {
         id: deviceListView
-
-        anchors.fill: parent
         model: deviceList.devModel
         clip: true
         spacing: 4
+        anchors.fill: parent
+        verticalLayoutDirection: ListView.BottomToTop
+        onCountChanged: {
+            Qt.callLater(() => {
+                deviceListView.positionViewAtEnd();
+            });
+        }
 
         delegate: DeviceItem {
             id: deviceItem
-
             width: deviceListView.width
-
-            required property int index
-            required property string name
-            required property var device
-            required property bool connected
-
             deviceName: deviceItem.name
             deviceObject: deviceItem.device
             isConnected: deviceItem.connected
-
             onActionButtonClicked: {
                 if (connected) {
                     console.log("Open configuration for device:", name);
@@ -44,18 +41,21 @@ Item {
                     deviceListView.model.remove_device(index);
                 }
             }
+
+            required property int index
+            required property string name
+            required property var device
+            required property bool connected
         }
     }
 
-    // Bottom vignette effect to indicate more content below
     Rectangle {
         id: bottomVignette
-
+        visible: deviceListView.contentHeight > deviceListView.height && !deviceListView.atYEnd
+        height: 24
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        height: 24
-        visible: deviceListView.contentHeight > deviceListView.height
 
         gradient: Gradient {
             GradientStop {
@@ -69,15 +69,13 @@ Item {
         }
     }
 
-    // Top vignette when scrolled down
     Rectangle {
         id: topVignette
-
+        visible: deviceListView.contentHeight > deviceListView.height && !deviceListView.atYBeginning
+        height: 24
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: 24
-        visible: deviceListView.contentY > 0
 
         gradient: Gradient {
             GradientStop {

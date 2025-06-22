@@ -3,8 +3,11 @@ App 1.0 App.qml
 BaseButton 1.0 BaseButton.qml
 BaseToolTip 1.0 BaseToolTip.qml
 ColorScheme 1.0 ColorScheme.qml
+DeviceDialog 1.0 DeviceDialog.qml
 DeviceItem 1.0 DeviceItem.qml
 DeviceList 1.0 DeviceList.qml
 FilledButton 1.0 FilledButton.qml
+IconButton 1.0 IconButton.qml
+Notification 1.0 Notification.qml
 OutlinedButton 1.0 OutlinedButton.qml
 singleton Theme 1.0 Theme.qml
